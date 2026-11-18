@@ -7,6 +7,6 @@ app = Flask(__name__)
 def get_user():
 name = request.args.get("name")
 conn = sqlite3.connect("app.db")
-query = "SELECT * FROM users WHERE name = '" + name + "'"
-rows = conn.execute(query).fetchall()
+query = "SELECT * FROM users WHERE name = ?"
+rows = conn.execute(query, (name,)).fetchall()
 return str(rows)
